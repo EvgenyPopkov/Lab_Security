@@ -45,10 +45,6 @@ string GetInput(string strinfo, string alfabet, bool isKeyWord = false) {
 		cout << strinfo;
 		cin.getline(buffer, 1000);
 		result = buffer;
-		for (int i = 0; i < result.size() - 1; ++i){
-			if (result[i]>'A' && result[i]<'Z') result[i] += 'z' - 'Z';
-			if (result[i]>'А' && result[i]<'Я') result[i] += 'я' - 'Я';
-		}
 		if (IsValidString(result, alfabet)) flag = true;
 		else cout << "Ошибка ввода" << endl;
 	} while (!flag);
@@ -94,8 +90,8 @@ int main()
 
 	string text;
 	string keyWord;
-	string alfabetRus = "абвгдежзийклмнопрстуфхцчшщъыьэюя ";
-	string alfabetEng = "abcdefghijklmnopqrstuvwxyz ";
+	string alfabetRus = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя0123456789!@#$%&()_+=|\;/<>?\'\".,*- ";
+	string alfabetEng = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&()_+=|\;/<>?\'\".,*- ";
 	
 	while (true) {
 		switch (GetInput("Выберите язык (0-русский, 1-english): ")) {
@@ -105,9 +101,11 @@ int main()
 			text = GetInput("Введите текст: ", alfabetRus);
 			switch (GetInput("Выберите действие (0-зашифровать, 1-расшифровать): ")) {
 			case '0':
+				cout << endl;
 				cout << "Результат: " << Encryption(text, keyWord, alfabetRus) << endl;
 				break;
 			case '1':
+				cout << endl;
 				cout << "Результат: " << Decryption(text, keyWord, alfabetRus) << endl;
 				break;
 			}
@@ -118,14 +116,17 @@ int main()
 			text = GetInput("Введите текст: ", alfabetEng);
 			switch (GetInput("Выберите действие (0-зашифровать, 1-расшифровать): ")) {
 			case '0':
+				cout << endl;
 				cout << "Результат: " << Encryption(text, keyWord, alfabetEng) << endl;
 				break;
 			case '1':
+				cout << endl;
 				cout << "Результат: " << Decryption(text, keyWord, alfabetEng) << endl;
 				break;
 			}
 			break;
 		}
+		cout << "=============================================================" << endl;
 	}
     return 0;
 }
